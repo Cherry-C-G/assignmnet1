@@ -1,0 +1,184 @@
+E F Codd. 12 rules for relational databases
+
+
+1. What does CRUD stand for?
+
+CRUD Operations:
+
+Create
+Read
+Update
+Delete
+
+2. What are the System Databases?
+
+It contains： 
+
+1.master database:Records all the system-level information for an instance of SQL Server.
+		  catalog database, keeps info on all user defined databases (.mdf master data file is different from the extension)
+
+2. msdb database: Is used by SQL Server Agent for scheduling alerts and jobs.
+		   where server agent keeps its activities
+
+3. model databade:  Is used as the template for all databases created 
+                    on the instance of SQL Server. Modifications made to the model 
+                   database, such as database size, collation, recovery model, 
+                  and other database options, are applied to any databases created afterward.
+
+		whenever you make a database, right click -> properties. You can now change the size. Files -> size(mb), but if you change the model’s properties, the settings change for the next database accordingly. “Alter database” is the command
+
+4. resource database: Is a read-only database that contains system objects that are included with SQL Server. 
+		      System objects are physically persisted in the Resource database, 
+                     but they logically appear in the sys schema of every database.
+
+		     Predefined functionalities. Predefined stored procedures are held here. Exampled of a stored procedure stored is Sp_Help which gives you a table of object name, owner, and object type of everything in the database.
+
+
+5. tempdb: Is a workspace for holding temporary objects or intermediate result sets.
+	   keeps temporary tables for usage in the query. Removes all tables after closing SQL
+
+3. What is OLAP and OLTP?
+
+OLTP/OLAP
+
+OLTP: ONLINE TRANSACTION PROCESSES1: The files that “Amazon” uses to keep “reviews” up to a limit. The file you interact with on a day to day. Needs back-up occasionally depending on the company. The backup is stored in the data center.
+Amazon: Products-> Review, orders, product details
+Online Transational Process (get data, handle 1tb, use sql server, reviews)
+
+Onlne Analytical Process
+(can handle 1000tb, hold the record/ historical data from OLTP, datalake/wareshouse)
+
+OLAP: ONLINE ANALYTICAL PROCESSES1: the data center itself.
+
+OLAP:Online Analytical Processing,(mongodb,1tb)
+    a category of software tools which provide analysis of data for business decisions.
+    OLAP systems allow users to analyze database information from multiple database systems at one time.
+
+OLTP:Online transaction processing shortly known as OLTP 
+     supports transaction-oriented applications in a 3-tier architecture.
+     OLTP administers day to day transaction of an organization.
+
+4. What is the difference between DDL vs. DML?
+
+Data definition language (DDL): Allows creation objects in database with:
+
+Create, Alter, Drop
+
+Data Manipulation Language (DML): Allows query and modify the data:
+
+            Select, Insert, Update, Delete.
+
+DDL:Data Definition Language command is used to create a database schema,
+while the DML: Data Manipulation Language command is used to modify the table's existing data. 
+
+5.What does the “Like” keyword do?
+
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+There are two wildcards often used in conjunction with the LIKE operator:
+
+ The percent sign (%) represents zero, one, or multiple characters
+ The underscore sign (_) represents one, single character
+
+6. List the wildcards available for the Like Operator.
+
+%,_,[],^,-
+
+7. What's the difference between left join and inner
+join?
+
+INNER JOIN: Returns only matched rows（intersection between two tables）
+LEFT JOIN: Return all rows from the left table,
+           and the matched rows from the right table
+
+
+
+Database
+
+
+1. Write a query that retrieves the columns ProductID, Name, Color and ListPrice from the Production.Product table, with no filter. 
+
+
+
+2. Write a query that retrieves the
+columns ProductID, Name, Color and ListPrice from the Production.Product table,
+
+excluding the rows that ListPrice is 0.
+
+
+3. Write a query that retrieves the columns ProductID, Name,
+Color and ListPrice from the Production.Product table, the rows that are not NULL for the Color column.
+
+
+4. Write a query that retrieves the columns ProductID, Name,
+Color and ListPrice from the Production.Product table, the rows that are not NULL for the column Color, and the column ListPrice has a value greater than zero.
+
+
+5. Write a query that concatenates the columns Name and Color
+from the Production.Product table by excluding the rows that are null for color.
+
+
+6. Write a query that generates the following result set from
+Production.Product:
+
+
+NAME: LL Crankarm  --  COLOR: Black
+
+
+NAME: ML Crankarm  --  COLOR: Black
+
+
+NAME: HL Crankarm  --  COLOR: Black
+
+
+NAME: Chainring Bolts  --  COLOR: Silver
+
+
+NAME: Chainring Nut  --  COLOR: Silver
+
+
+NAME: Chainring  --  COLOR: Black
+
+7.
+Write a query to retrieve the to the columns ProductID and Name from the Production.Product table filtered by ProductID from 400 to 500 using between
+
+8. Write a query to retrieve the to the columns  ProductID,
+Name and color from the Production.Product table restricted to the colors black and blue
+
+
+9. Write a query to get a result set on products that begins
+with the letter S. 
+
+
+10. Write a query that retrieves the columns Name and ListPrice
+from the Production.Product table. Your result set should look something like the following. Order the result set
+
+
+by the Name column. The products name should start with either 'A' or 'S'
+
+
+Name                                            ListPrice
+
+
+Adjustable Race                                   0,00
+
+
+All-Purpose Bike Stand                       159,00
+
+
+AWC Logo Cap                                      8,99
+
+
+Seat Lug                                          0,00
+
+
+Seat Post                                         0,00
+
+
+
+11. Write a query so you retrieve rows
+that have a Name that begins with the letters SPO, but is then not followed by the letter K. After this zero or more letters can exists. Order the result set by the Name column.
+
+
+12. Write a query that retrieves the unique combination of
+columns ProductSubcategoryID and Color from the Production.Product table. We do not want any rows that are NULL.in any of the two columns in the result. (Hint: Use IsNull)
+
